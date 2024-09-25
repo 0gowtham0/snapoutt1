@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnapOut Photography</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      padding: 1.5rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: gray;
+    }
+    .main-content {
+      padding-top: 6rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 640px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .grid img:hover {
+      transform: scale(1.05);
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 100;
+    }
+    .overlay img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: white;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .close-btn:hover {
+      color: gray;
+    }
+    .section {
+      padding: 4rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+    }
+    .section p {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.25rem;
+      line-height: 1.6;
+    }
+    .about-section {
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.9)), url('background-about.jpg') center/cover;
+      background-attachment: fixed;
+      color: white;
+    }
+    .contact-section {
+      background-color: #222;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 3rem 1.5rem;
+    }
+    .contact-details {
+      flex: 1;
+      text-align: left;
+      margin: 0 1.5rem;
+      max-width: 400px;
+    }
+    .contact-details p {
+      font-size: 1.5rem;
+    }
+    form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      padding: 2rem;
+      background-color: #333;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    form input, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    form input {
+      color: black;
+    }
+    form button {
+      background-color: gray;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    form button:hover {
+      background-color: darkgray;
+    }
+    @media (max-width: 768px) {
+      .contact-section {
+        flex-direction: column;
+      }
+      .contact-details, form {
+        max-width: 100%;
+        margin: 1.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SnapOut Photography</h1>
+    <nav>
+      <ul>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+      <div class="grid">
+        <img src="1.jpg" alt="Landscape photo" onclick="openPhoto('1.jpg')">
+        <img src="2.jpg" alt="Portrait photo" onclick="openPhoto('2.jpg')">
+        <img src="3.jpg" alt="Landscape photo" onclick="openPhoto('3.jpg')">
+        <img src="4.jpg" alt="Portrait photo" onclick="openPhoto('4.jpg')">
+        <img src="5.jpg" alt="Landscape photo" onclick="openPhoto('5.jpg')">
+        <img src="6.jpg" alt="Portrait photo" onclick="openPhoto('6.jpg')">
+        <img src="7.jpg" alt="Landscape photo" onclick="openPhoto('7.jpg')">
+        <img src="8.jpg" alt="Portrait photo" onclick="openPhoto('8.jpg')">
+        <img src="9.jpg" alt="portrait photo" onclick="openPhoto('9.jpg')">
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="section about-section">
+      <h2 class="section-title">About Us</h2>
+      <p>
+        At Snapoutt, we believe that every moment deserves to be captured in its purest, most natural form. Founded by a passionate photographer with a background in wildlife and candid photography, Snapoutt specializes in creating timeless visual stories. Our unique approach focuses on capturing authentic emotions and moments, whether it's a fleeting glance, a spontaneous laugh, or the quiet beauty of nature. Our founder, Ganesh, transitioned from capturing the wild to freezing moments of human joy, blending his expertise in patience and precision with a deep love for candid photography. At Snapoutt, we pride ourselves on offering a personalized experience, ensuring every session is a reflection of your unique story. Whether it's a special event, portrait, or a lifestyle shoot, we’re here to frame your moments in ways that feel effortless yet extraordinary      </p>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="section contact-section">
+      <div class="contact-details">
+        <p>
+          Feel free to reach out! <br>
+          Name: Ganesh <br>
+          Phone: +123-456-7890
+        </p>
+      </div>
+      <form action="https://formspree.io/f/mnnakepj" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="tel" name="phone" placeholder="Your Phone Number" required>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </div>
+
+  <div id="photo-overlay" class="overlay" style="display: none;" onclick="closePhoto()">
+    <img id="photo-overlay-img" src="" alt="">
+    <button class="close-btn" onclick="closePhoto()">×</button>
+  </div>
+
+  <script>
+    function openPhoto(src) {
+      document.getElementById('photo-overlay-img').src = src;
+      document.getElementById('photo-overlay').style.display = 'flex';
+    }
+
+    function closePhoto() {
+      document.getElementById('photo-overlay').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
